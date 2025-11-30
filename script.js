@@ -89,3 +89,11 @@ function setupAutocomplete(inputId, list = []) {
     closeAllLists(e.target);
   });
 }
+const answer = process;
+var score = 0;
+
+// function guess(guess) {
+//   if guess == answer  {
+//     score += 1
+//   }
+// }

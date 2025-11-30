@@ -7,7 +7,6 @@ import (
 	"image/color"
 	_ "image/jpeg"
 	"image/png"
-	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -29,67 +28,68 @@ func init() {
 		return
 	}
 	fmt.Println("function starts at: ", dir)
-	if len(entries) == 0 {
-		fmt.Println("dir not empty")
+	if inputFile == "" {
+		if len(entries) == 0 {
+			fmt.Println("dir not empty")
 
-		inputDir := "./input"
+			inputDir := "./input"
 
-		files,err := os.ReadDir(inputDir)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-
-		for _, f := range files {
-			if !f.IsDir() {
-				inputFile = filepath.Join(inputDir, f.Name())
-				break
+			files,err := os.ReadDir(inputDir)
+			if err != nil {
+				log.Fatal(err)
 			}
-		}
-
-		if inputFile == "" {
-			log.Fatal("No input video fount in ./input folder")
-		}
 
 
-		cmd := exec.Command(
-		"C:/ffmpeg/bin/ffmpeg.exe",
-		"-i", inputFile,
-		"./images/%04d.png",
-		)
-
-		// FFmpeg sends progress to stderr
-		stderr, err := cmd.StderrPipe()
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		if err := cmd.Start(); err != nil {
-			log.Fatal(err)
-		}
-
-		scanner := bufio.NewScanner(stderr)
-		frameRe := regexp.MustCompile(`frame=\s*(\d+)`)
-
-		fmt.Println("Extracting frames...")
-
-		for scanner.Scan() {
-			line := scanner.Text()
-			if matches := frameRe.FindStringSubmatch(line); matches != nil {
-				frameNum, _ := strconv.Atoi(matches[1])
-				fmt.Printf("\rFrames processed: %d", frameNum)
+			for _, f := range files {
+				if !f.IsDir() {
+					inputFile = filepath.Join(inputDir, f.Name())
+					break
+				}
 			}
-		}
 
-		if err := cmd.Wait(); err != nil {
-			log.Fatal(err)
-		}
+			if inputFile == "" {
+				log.Fatal("No input video fount in ./input folder")
+			}
 
-		if err != nil {
-			log.Fatal(err)
-		}
+//change resolution of images to be 1920x1080
+			cmd := exec.Command(
+			"C:/ffmpeg/bin/ffmpeg.exe",
+			"-i", inputFile,
+			"-vf", "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2",
+			"./images/%04d.png",
+			)
 
-		fmt.Println("\nDone!")
+			// FFmpeg sends percent to stderr
+			stderr, err := cmd.StderrPipe()
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			if err := cmd.Start(); err != nil {
+				log.Fatal(err)
+			}
+
+			scanner := bufio.NewScanner(stderr)
+			frameRe := regexp.MustCompile(`frame=\s*(\d+)`)
+
+			fmt.Println("Extracting frames...")
+
+			for scanner.Scan() {
+				line := scanner.Text()
+				if matches := frameRe.FindStringSubmatch(line); matches != nil {
+					frameNum, _ := strconv.Atoi(matches[1])
+					fmt.Printf("\rFrames processed: %d", frameNum)
+				}
+			}
+
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Println("\nDone!")
+		}
+	}else{
+		log.Fatal("No input file")
 	}
 }
 
@@ -126,8 +126,8 @@ func main() {
 			if err != nil {
 				log.Fatal("Image decode failed:", err)
 			}
-
-			res := 16
+//loop through array of resolutions [256,192,128,64,32,4]
+			res := 4
 
 			width := img.Bounds().Dx()
 			height := img.Bounds().Dy()
@@ -203,7 +203,7 @@ func main() {
 
 	fmt.Println("base string:", base)
 
-	outputPath := filepath.Join("./output", fmt.Sprintf("%s_16res.gif", name))
+	outputPath := filepath.Join("./output", fmt.Sprintf("%s_4res.gif", name))
 
 	cmd := exec.Command(
 	"C:/ffmpeg/bin/ffmpeg.exe",
@@ -211,26 +211,18 @@ func main() {
 	"-i", "colorBlocks/%04d.png",
 	outputPath,
 	)
-
-	stderr, err := cmd.StderrPipe()
-
-	if err != nil {
-		log.Fatal(err)
-	}
+//2874 - 3328
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 
 	if err := cmd.Start(); err != nil {
 		log.Fatal(err)
 	}
 
-	slurp, _ := io.ReadAll(stderr)
-	fmt.Printf("%s\n", slurp)
-
-	if err != nil {
+	if err := cmd.Wait(); err != nil {
 		log.Fatal(err)
 	}
 
-	os.RemoveAll("./images")
-	os.Mkdir("./images", 0755)
 	os.RemoveAll("./colorBlocks")
 	os.Mkdir("./colorBlocks", 0755)
 
