@@ -127,7 +127,7 @@ func main() {
 				log.Fatal("Image decode failed:", err)
 			}
 //loop through array of resolutions [256,192,128,64,32,4]
-			res := 4
+			res := 32
 
 			width := img.Bounds().Dx()
 			height := img.Bounds().Dy()
@@ -203,15 +203,17 @@ func main() {
 
 	fmt.Println("base string:", base)
 
-	outputPath := filepath.Join("./output", fmt.Sprintf("%s_4res.gif", name))
+	outputPath := filepath.Join("./output", fmt.Sprintf("%s_32res.mp4", name))
 
 	cmd := exec.Command(
-	"C:/ffmpeg/bin/ffmpeg.exe",
-	"-framerate", "24",
-	"-i", "colorBlocks/%04d.png",
-	outputPath,
+		"C:/ffmpeg/bin/ffmpeg.exe",
+		"-framerate", "24",
+		"-i", "colorBlocks/%04d.png",
+		"-c:v", "libx264",
+		"-pix_fmt", "yuv420p",
+		outputPath,
 	)
-//2874 - 3328
+
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 

@@ -1,4 +1,8 @@
 let names = [];
+let answer = "";
+let score = 1;
+let guess = "";
+let answerFiles = {};
 
 async function loadNames() {
   try {
@@ -11,7 +15,24 @@ async function loadNames() {
   }
   setupAutocomplete("nameInput", names);
 }
-document.addEventListener("DOMContentLoaded", loadNames);
+
+async function loadAnswer() {
+  try {
+    const res = await fetch("answers.json");
+    const data = await res.json();
+    answer = data.name;
+    answerFiles = data.files;
+    console.log("Loaded answer:", answer);
+  } catch (e) {
+    console.error("Cound not load JSON, using fallback array.");
+    answer = ["See you Space Cowboy"];
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadNames();
+  loadAnswer();
+});
 
 function setupAutocomplete(inputId, list = []) {
   const input = document.getElementById(inputId);
@@ -89,11 +110,27 @@ function setupAutocomplete(inputId, list = []) {
     closeAllLists(e.target);
   });
 }
-const answer = process;
-var score = 0;
 
-// function guess(guess) {
-//   if guess == answer  {
-//     score += 1
-//   }
-// }
+function makeGuess() {
+  guess = document.getElementById("nameInput").value;
+
+  if (guess == answer) {
+    console.log("Correct", score);
+  } else {
+    score++;
+    console.log("Wrong guess:", guess);
+    console.log("Score: ", score);
+  }
+}
+document.getElementById("guessBtn").addEventListener("click", makeGuess);
+
+function updateClueImage() {
+  const img = document.getElementById("clueImage");
+  const key = "file_" + score;
+
+  if (answerFiles[key]) {
+    img.src = answerFiles[key];
+  } else {
+    console.warn("Missing file for:", key);
+  }
+}
