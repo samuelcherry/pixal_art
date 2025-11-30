@@ -1,5 +1,12 @@
+.frameContainer {
+  background-color: blue;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .autocomplete-items {
-  position: absolute;
   border: 1px solid #d4d4d4;
   background-color: #fff;
   z-index: 99;
@@ -13,4 +20,11 @@
 }
 .autocomplete-item:hover {
   background-color: #e9e9e9;
+}
+
+.textRegion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: green;
 }
