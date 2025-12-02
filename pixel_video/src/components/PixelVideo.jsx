@@ -1,5 +1,7 @@
 import React from "react";
 
+//useContext to move score from Guess Component to this component
+
 const PixelVideo = () => {
   return (
     <div>

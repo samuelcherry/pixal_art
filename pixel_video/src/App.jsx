@@ -4,8 +4,6 @@ import PixelVideo from "./components/PixelVideo";
 import GuessInput from "./components/GuessInput";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <div class="frameContainer">
