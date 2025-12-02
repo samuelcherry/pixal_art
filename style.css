@@ -1,9 +1,18 @@
+:root {
+  background-color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .frameContainer {
-  background-color: blue;
+  background-color: rgb(64, 64, 64);
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.clueImage {
+  max-width: 500px;
 }
 
 .autocomplete-items {
@@ -26,5 +35,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: green;
+  background-color: rgb(57, 57, 57);
+  padding: 5px;
+  border-radius: 15px;
+  border: 2px solid #000;
+  box-shadow: 10px, 10px, 10px, 10px, #070707;
+}
+
+.scoreLights {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  background-color: black;
+  align-items: center;
+}
+
+.lights {
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.textRegion input {
+  margin: 5px;
 }
