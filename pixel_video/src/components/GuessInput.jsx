@@ -8,8 +8,22 @@ const GuessInput = () => {
   const [options, setOptions] = useState(names);
   const [videoAnswer, setVideoAnswer] = useState(answer);
   const [videoFiles, setVideoFiles] = useState(files);
+  const [guess, setGuess] = useState("");
 
   console.log("names: ", names);
+
+  const handleGuess = (guessInput) => {
+    if (guessInput == answer) {
+      console.log("Correct");
+    } else {
+      console.log("Incorrect");
+    }
+  };
+
+  function handleChange(event) {
+    setGuess(event.target.value);
+    console.log("guess: ", guess);
+  }
   // function setupAutocomplete(inputId, list = []) {
   //   const input = document.getElementById(inputId);
   //   let currentFocus;
@@ -113,8 +127,17 @@ const GuessInput = () => {
           type="text"
           placeholder="type your guess"
           autocomplete="off"
+          value={guess}
+          onChange={handleChange}
         />
-        <Button variant="outlined">Guess</Button>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            handleGuess(guess);
+          }}
+        >
+          Guess
+        </Button>
         <script src="script.js"></script>
       </div>
     </>
