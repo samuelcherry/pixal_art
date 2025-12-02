@@ -23,6 +23,7 @@ async function loadAnswer() {
     answer = data.name;
     answerFiles = data.files;
     console.log("Loaded answer:", answer);
+    console.log("Loaded Files: ", answerFiles["file_1"]);
   } catch (e) {
     console.error("Cound not load JSON, using fallback array.");
     answer = ["See you Space Cowboy"];
@@ -120,6 +121,7 @@ function makeGuess() {
     score++;
     console.log("Wrong guess:", guess);
     console.log("Score: ", score);
+    updateClueImage();
   }
 }
 document.getElementById("guessBtn").addEventListener("click", makeGuess);
@@ -127,9 +129,10 @@ document.getElementById("guessBtn").addEventListener("click", makeGuess);
 function updateClueImage() {
   const img = document.getElementById("clueImage");
   const key = "file_" + score;
+  console.log("key: ", key);
 
   if (answerFiles[key]) {
-    img.src = answerFiles[key];
+    document.getElementById("clueImage").src = answerFiles[key];
   } else {
     console.warn("Missing file for:", key);
   }
