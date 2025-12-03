@@ -1,7 +1,7 @@
 {
   "answer": "Espresso",
   "files": {
-    "file_1": "./videoAnswers/_256res.mp4",
+    "file_1": "public/_256res.mp4",
     "file_2": "./videoAnswers/_128res.mp4",
     "file_3": "./videoAnswers/_64res.mp4",
     "file_4": "./videoAnswers/_32res.mp4",

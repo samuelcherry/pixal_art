@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "@fontsource/roboto/700.css";
 import names from "../options.json";
 import { answer, files } from "../answers.json";
 import Button from "@mui/material/Button";
+import { ScoreContext } from "../context/scoreContext";
 
 const GuessInput = () => {
   const [options, setOptions] = useState(names);
   const [videoAnswer, setVideoAnswer] = useState(answer);
   const [videoFiles, setVideoFiles] = useState(files);
   const [guess, setGuess] = useState("");
+  const { score, setScore } = useContext(ScoreContext);
 
-  console.log("names: ", names);
+  console.log("guess section score: ", score);
 
   const handleGuess = (guessInput) => {
     if (guessInput == answer) {
       console.log("Correct");
+      setScore((prev) => 6);
     } else {
       console.log("Incorrect");
+      setScore((prev) => prev + 1);
     }
   };
 
