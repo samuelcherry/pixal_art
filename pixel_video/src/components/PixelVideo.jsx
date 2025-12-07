@@ -17,9 +17,10 @@ const PixelVideo = () => {
           src={fileSuffix}
           width="60%"
           alt="the clue of the day"
-          autoplay
+          autoPlay
           loop
-          playsinline
+          playsInLine
+          muted
         ></video>
       </div>
     </div>

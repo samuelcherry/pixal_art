@@ -1,7 +1,32 @@
 {
   "names": [
-    "Don't look back in anger by Oasis",
-    "Espresso by Sabrina Carpenter",
-    "I Write Sins Not Tragedies by Panic at the Disco"
+    { "label": "Don't look back in anger by Oasis", "value": 1 },
+    { "label": "Wonderwall by Oasis", "value": 2 },
+    { "label": "I Write Sins Not Tragedies by Panic at the Disco", "value": 3 },
+    { "label": "Thriller by Michael Jackson", "value": 4 },
+    { "label": "Bad Romance by Lady Gaga", "value": 5 },
+    { "label": "Like a Prayer by Madonna", "value": 6 },
+    { "label": "Single Ladies by Beyoncé", "value": 7 },
+    { "label": "Take On Me by a-ha", "value": 8 },
+    { "label": "Smells Like Teen Spirit by Nirvana", "value": 9 },
+    { "label": "Billie Jean by Michael Jackson", "value": 10 },
+    { "label": "Wrecking Ball by Miley Cyrus", "value": 11 },
+    { "label": "Royals by Lorde", "value": 12 },
+    { "label": "Chandelier by Sia", "value": 13 },
+    { "label": "Shake It Off by Taylor Swift", "value": 14 },
+    { "label": "Vogue by Madonna", "value": 15 },
+    { "label": "HUMBLE. by Kendrick Lamar", "value": 16 },
+    { "label": "Old Town Road by Lil Nas X", "value": 17 },
+    { "label": "Bad Blood by Taylor Swift", "value": 18 },
+    { "label": "Hello by Adele", "value": 19 },
+    { "label": "Uptown Funk by Mark Ronson ft. Bruno Mars", "value": 20 },
+    { "label": "Happy by Pharrell Williams", "value": 21 },
+    { "label": "Somebody That I Used to Know by Gotye", "value": 22 },
+    { "label": "All the Small Things by Blink-182", "value": 23 },
+    { "label": "Espresso by Sabrina Carpenter", "value": 24 },
+    { "label": "A Thousand Miles by Vanessa Carlton", "value": 25 },
+    { "label": "Firework by Katy Perry", "value": 26 },
+    { "label": "Poker Face by Lady Gaga", "value": 27 },
+    { "label": "Boulevard of Broken Dreams by Green Day", "value": 28 }
   ]
 }

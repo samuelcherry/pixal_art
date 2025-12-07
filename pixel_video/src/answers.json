@@ -1,11 +1,12 @@
 {
-  "answer": "Espresso",
+  "answer": "Espresso by Sabrina Carpenter",
   "files": {
-    "file_1": "public/_256res.mp4",
-    "file_2": "./videoAnswers/_128res.mp4",
-    "file_3": "./videoAnswers/_64res.mp4",
-    "file_4": "./videoAnswers/_32res.mp4",
-    "file_5": "./videoAnswers/_16res.mp4",
-    "file_6": "./videoAnswers/_4res.mp4"
+    "file_1": "./_128res.mp4",
+    "file_2": "./_96res.mp4",
+    "file_3": "./_64res.mp4",
+    "file_4": "./_32res.mp4",
+    "file_5": "./_16res.mp4",
+    "file_6": "./_4res.mp4",
+    "file_7": "./_4res.mp4"
   }
 }

@@ -18,6 +18,27 @@
   text-align: center;
 }
 
+.textRegion {
+  height: 150px;
+}
+
+.scoreLights {
+  display: flex;
+  justify-content: center;
+  height: 25px;
+  margin-bottom: 15px;
+}
+
+.lights {
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  margin: 5px;
+  border-radius: 9px;
+  border: 2px solid black;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -40,6 +61,10 @@ h1 {
   line-height: 1.1;
 }
 
+.guessBtn {
+  margin: 5px;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -47,7 +72,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #434343;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -70,4 +95,14 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.titleInput {
+  width: 60%;
+  margin-bottom: 10px;
 }
